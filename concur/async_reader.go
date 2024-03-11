@@ -12,7 +12,7 @@ type FetchResult[T any] struct {
 
 type FetchFunc[T any] func(ctx context.Context) (T, error)
 
-func New[T any](
+func NewAsyncReader[T any](
 	fetcher func(context.Context) (T, error),
 ) *AsyncReader[T] {
 	return &AsyncReader[T]{
