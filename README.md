@@ -33,16 +33,36 @@
 
 ## Getting Started
 
-For a full API reference, see the official [Five9 REST API documentation](https://webapps.five9.com/assets/files/for_customers/documentation/apis/vcc-agent+supervisor-rest-api-reference-guide.pdf)
+`concur` is a Go library that allows you to safely and easily implement a concurrency pattern in your codebase. Install the latest version, and get up and running in minutes. 
 
-### Prerequisites
+This library is currently used by the Five9-GO repository, to provide a reliable, safe way to interact with the Five9 API Websocket service.  
 
-Download and install Go, version 1.21+, from the [official Go website](https://go.dev/doc/install).
+### What is concurrency, and why is it useful?
+
+```
+Concurrency is the composition of independently executing computations.
+
+Concurrency is a way to structure software, particularly as a way to write clean code that interacts well with the real world.
+
+It is not parallelism. 
+
+	- Rob Pike, 2012
+```
+
+Simply put, concurrency in software allows you to create **fast**, **robust** systems that can be relied upon to be **consistent**. Some examples of what concurrency can do, as provided by the Go team:   
+
+- [A Prime Number Sieve](https://go.dev/play/p/9U22NfrXeq)
+- [An RSS Feed fetcher](https://cs.opensource.google/go/x/website/+/master:_content/talks/2013/advconc/realmain/realmain.go)
+
+### Common pitfalls of concurrency that this library prevents  
+- Race conditions
+- Deadlocks  
+- Unpredictable or "flaky" tests when testing concurrent data models (such as Websockets, which are inherently asynchronous messages being sent back and forth between systems)
 
 ### Install
 
 ```shell
-go get github.com/equalsgibson/five9-go
+go get github.com/equalsgibson/concur@latest
 ```
 
 ### Quickstart
@@ -121,7 +141,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 [Chris Gibson (@equalsgibson)](https://github.com/equalsgibson)
 
-Project Link: [https://github.com/equalsgibson/five9-go](https://github.com/equalsgibson/five9-go)
+Project Link: [https://github.com/equalsgibson/concur](https://github.com/equalsgibson/concur)
 
 <!-- ACKNOWLEDGMENTS -->
 
