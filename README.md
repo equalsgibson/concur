@@ -13,9 +13,9 @@
 
 <!-- markdownlint-enable MD033 -->
 
--   **Easy to use**: Get up and running with the library in minutes
--   **Intuitive**: Get access to a powerful pattern within software development, without encountering common pitfalls or mistakes!
--   **Actively developed**: Ideas and contributions welcomed!
+- **Easy to use**: Get up and running with the library in minutes
+- **Intuitive**: Get access to a powerful pattern within software development, without encountering common pitfalls or mistakes!
+- **Actively developed**: Ideas and contributions welcomed!
 
 ---
 
@@ -29,9 +29,9 @@
 
 ## Getting Started
 
-`concur` is a Go library that allows you to safely and easily implement a concurrency pattern in your codebase. Install the latest version, and get up and running in minutes. 
+`concur` is a Go library that allows you to safely and easily implement a concurrency pattern in your codebase. Install the latest version, and get up and running in minutes.
 
-This library is currently used by the Five9-GO repository, to provide a reliable, safe way to interact with the Five9 API Websocket service.  
+This library is currently used by the Five9-GO repository, to provide a reliable, safe way to interact with the Five9 API Websocket service.
 
 ### What is concurrency, and why is it useful?
 
@@ -40,25 +40,26 @@ Concurrency is the composition of independently executing computations.
 
 Concurrency is a way to structure software, particularly as a way to write clean code that interacts well with the real world.
 
-It is not parallelism. 
+It is not parallelism.
 
 	- Rob Pike, 2012
 ```
 
-Simply put, concurrency in software allows you to create **fast**, **robust** systems that can be relied upon to be **consistent**. Some examples of what concurrency can do, as provided by the Go team:   
+Simply put, concurrency in software allows you to create **fast**, **robust** systems that can be relied upon to be **consistent**. Some examples of what concurrency can do, as provided by the Go team:
 
 - [A Prime Number Sieve](https://go.dev/play/p/9U22NfrXeq)
 - [An RSS Feed fetcher](https://cs.opensource.google/go/x/website/+/master:_content/talks/2013/advconc/realmain/realmain.go)
 
-### Common pitfalls of concurrency that this library prevents  
+### Common pitfalls of concurrency that this library prevents
+
 - Race conditions
-- Deadlocks  
+- Deadlocks
 - Unpredictable or "flaky" tests when testing concurrent data models (such as Websockets, which are inherently asynchronous messages being sent back and forth between systems)
 
 ### Install
 
 ```shell
-go get github.com/equalsgibson/concur@latest
+go get github.com/equalsgibson/concur@v0.0.3
 ```
 
 <!-- CONTRIBUTING -->
