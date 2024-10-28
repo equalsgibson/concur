@@ -59,7 +59,7 @@ Simply put, concurrency in software allows you to create **fast**, **robust** sy
 ### Install
 
 ```shell
-go get github.com/equalsgibson/concur@v0.0.2
+go get github.com/equalsgibson/concur@v0.0.3
 ```
 
 <!-- CONTRIBUTING -->
