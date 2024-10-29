@@ -62,6 +62,26 @@ Simply put, concurrency in software allows you to create **fast**, **robust** sy
 go get github.com/equalsgibson/concur@v0.0.3
 ```
 
+### Example of ASyncReader
+
+Run the example ASyncReader with a mock asynchronous resource, along with a CPU and Memory profile.
+
+https://github.com/equalsgibson/concur/blob/e3d8905e740043133e92e11918fd1c2e47d7e0e3/examples/async_reader_timer.go/main.go#L1-L109
+
+Expected Output:
+
+```bash
+cgibson@wsl-ubuntuNexus:~/concur$ go run examples/async_reader_timer.go/main.go -cpuprofile cpu.prof -memprofile mem.prof
+2024/10/29 00:01:00 Current Iteration: 1 - Current goroutines: 4
+2024/10/29 00:01:01 Current Iteration: 2 - Current goroutines: 4
+...
+2024/10/29 00:01:03 Current Iteration: 299 - Current goroutines: 4
+2024/10/29 00:01:03 Current Iteration: 300 - Current goroutines: 4
+2024/10/29 00:01:05 Got an error response from Loop fetch function: end of the example - thanks for using the concur package
+```
+
+You can then analyze the profiles created, using the [pprof](https://pkg.go.dev/runtime/pprof#hdr-Profiling_a_Go_program) tool
+
 <!-- CONTRIBUTING -->
 
 ## Contributing
