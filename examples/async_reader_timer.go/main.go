@@ -36,7 +36,7 @@ func main() {
 
 	iterations := uint(0)
 
-	// Create a new ASyncReader that will print the current iteration every 5 seconds.
+	// Create a new ASyncReader that will print the current iteration every second.
 	// This could also fetch data from an API or database at specific intervals, or
 	// set up an asynchronous connection to a datasource (i.e. a Websocket)
 	reader := concur.NewAsyncReader(
