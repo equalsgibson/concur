@@ -5,31 +5,21 @@ import (
 	"errors"
 	"flag"
 	"log"
-	"os"
+	"net/http"
+	_ "net/http/pprof"
 	"runtime"
-	"runtime/pprof"
 	"time"
 
 	"github.com/equalsgibson/concur/concur"
 )
 
 // https://pkg.go.dev/runtime/pprof#hdr-Profiling_a_Go_program
-var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
-var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
-
 func main() {
 	flag.Parse()
-	if *cpuprofile != "" {
-		f, err := os.Create(*cpuprofile)
-		if err != nil {
-			log.Fatal("could not create CPU profile: ", err)
-		}
-		defer f.Close() // error handling omitted for example
-		if err := pprof.StartCPUProfile(f); err != nil {
-			log.Fatal("could not start CPU profile: ", err)
-		}
-		defer pprof.StopCPUProfile()
-	}
+
+	go func() {
+		log.Println(http.ListenAndServe("localhost:6060", nil))
+	}()
 
 	// Create a context that we can pass into the async loop function
 	ctx := context.Background()
@@ -72,36 +62,12 @@ func main() {
 			if update.Err != nil {
 				log.Printf("Got an error response from Loop fetch function: %s", update.Err.Error())
 
-				if *memprofile != "" {
-					f, err := os.Create(*memprofile)
-					if err != nil {
-						log.Fatal("could not create memory profile: ", err)
-					}
-					defer f.Close() // error handling omitted for example
-					runtime.GC()    // get up-to-date statistics
-					if err := pprof.WriteHeapProfile(f); err != nil {
-						log.Fatal("could not write memory profile: ", err)
-					}
-				}
-
 				return
 			}
 
 			log.Printf("Current Iteration: %d - Current goroutines: %d", iterations, runtime.NumGoroutine())
 		case <-ctx.Done():
 			log.Printf("Context was cancelled or hit deadline: %s", ctx.Err())
-
-			if *memprofile != "" {
-				f, err := os.Create(*memprofile)
-				if err != nil {
-					log.Fatal("could not create memory profile: ", err)
-				}
-				defer f.Close() // error handling omitted for example
-				runtime.GC()    // get up-to-date statistics
-				if err := pprof.WriteHeapProfile(f); err != nil {
-					log.Fatal("could not write memory profile: ", err)
-				}
-			}
 
 			return
 		}
